@@ -30,7 +30,7 @@ The Stripe Payment Link Plugin requires the following environment variables to b
 You can update these variables either via the NxtBn dashboard under `Settings` or directly in the codebase using:
 ```bash
 nano .env
-
+```
 
 # Obtaining Stripe API Keys
 

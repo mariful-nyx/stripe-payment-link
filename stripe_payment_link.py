@@ -3,7 +3,7 @@ import stripe
 from decimal import Decimal
 from typing import Optional, Any, Dict
 from nxtbn.order.models import Order
-from nxtbn.payment.base_payment_gateway import BasePaymentGateway, PaymentResponse
+from nxtbn.payment.base import PaymentPlugin, PaymentResponse
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from nxtbn.payment.models import Payment
@@ -23,7 +23,7 @@ class StripeSerializer(serializers.Serializer):
     """"Need to define at least a serialize, dummy as it is cod, no additional payload will come from payment gateway"""
     pass
 
-class StripePaymentLinkGateway(BasePaymentGateway):
+class StripePaymentLinkGateway(PaymentPlugin):
     """Stripe payment gateway implementation."""
     gateway_name = 'stripe'
 

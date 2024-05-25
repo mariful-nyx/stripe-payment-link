@@ -98,7 +98,7 @@ class StripePaymentLinkGateway(PaymentPlugin):
             line_items.append({
             'price_data': {
                 'currency': self.get_currency_code(),
-                'unit_amount': self.get_unit_amount(item.price_per_unit),
+                'unit_amount': self.to_subunit(item.price_per_unit),
                 'product_data': {
                     'name': item.variant.name,
                     'description': '-----',
@@ -157,7 +157,7 @@ class StripePaymentLinkGateway(PaymentPlugin):
 
                 payment_payload = {
                     "order_alias": order_alias,
-                    "payment_amount": self.normalize_amount(data["data"]["object"]["amount_total"]),
+                    "payment_amount": data["data"]["object"]["amount_total"],
                     "gateway_response_raw": data,
                     "paid_at": datetime.fromtimestamp(int(data["data"]["object"]["created"]), tz=timezone.utc),
                     "transaction_id": data["data"]["object"]["payment_intent"],
